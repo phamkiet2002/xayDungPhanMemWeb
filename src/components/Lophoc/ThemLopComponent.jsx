@@ -18,7 +18,7 @@ const ThemLopComponent = (props) => {
             setTenLop('');
             toast.success("Thêm thành công")
         } else {
-            toast.error("lỗi")
+            toast.error("Lỗi")
         }
     }
 
