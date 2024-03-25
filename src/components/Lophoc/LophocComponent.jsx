@@ -40,12 +40,10 @@ const LophocComponent = (props) => {
                 .then(rp => {
                     listLophoc();
                     toast.success("xóa thành công")
-                    //alert("Đã xóa thành công.");
                 })
                 .catch(error => {
                     if (error.response && error.response.status === 500) {
                         toast.error("Không thể xóa vì khóa không tồn tại hoặc có dữ liệu liên quan.")
-                        //alert("Không thể xóa vì khóa không tồn tại hoặc có dữ liệu liên quan.");
                     }
                 });
         }

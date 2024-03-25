@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 import { fetchAllDiem } from '../../services/diemService';
+import { useNavigate } from 'react-router-dom';
 const DiemConponent = () => {
 
     const [diems, setDiem] = useState([]);
-    // const [sinhVien, setSinhVien] = useState('');
-    // const [monhoc, setMonhoc] = useState('');
+    const navigator = useNavigate();
 
     useEffect(() => {
         listDiem();
@@ -19,8 +19,16 @@ const DiemConponent = () => {
         })
     }
 
+    function addDiem() {
+        navigator('/add-diem')
+    }
+
     return (
         <div>
+            <div className='my-3 them_diem'>
+                <span><b>Thêm Điểm:</b></span>
+                <button onClick={addDiem} className='btn btn-success'>Thêm Điểm</button>
+            </div>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -40,7 +48,7 @@ const DiemConponent = () => {
                                 <td>{diem.sinhVien.ten}</td>
                                 <td>{diem.monhoc.tenMH}</td>
                                 <td>
-                                    <button  className='btn btn-success ms-2'>Update</button>
+                                    <button className='btn btn-success ms-2'>Update</button>
                                     {/* onClick={() => Update(employee.id)} */}
                                 </td>
                             </tr>
