@@ -1,6 +1,6 @@
 import axios from "axios";
 
-
+const URL_BASE = 'http://localhost:8080/api/lophoc';
 
 const fetchAllLophoc = () => {
     return axios.get(URL_BASE);
