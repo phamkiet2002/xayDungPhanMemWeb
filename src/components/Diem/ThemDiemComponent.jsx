@@ -6,9 +6,11 @@ const ThemDiemComponent = () => {
     const [diem, setDiem] = useState('');
     const [sinhVien, setSinhVien] = useState('');
     const [monhoc, setMonHoc] = useState('')
-    //const { id } = useParams();
-    const [diems, setDiems] = useState([]);
 
+    //const { id } = useParams();
+
+    //select Option
+    const [diems, setDiems] = useState([]);
     useEffect(() => {
         listDiem();
     }, [])
@@ -21,9 +23,19 @@ const ThemDiemComponent = () => {
         })
     }
 
-    function handleChange(event) {
-        const selectedMonhoc = event.target.value; 
-        setMonHoc(selectedMonhoc); 
+    function handleChangeMonHoc(event) {
+        const selectedMonhoc = event.target.value;
+        setMonHoc(selectedMonhoc);
+    }
+
+    function handleChangeSinhVien(event) {
+        const selectedSinhVien = event.target.value;
+        setSinhVien(selectedSinhVien);
+    }
+
+    //chưa trả về trang trước khi nhấn hủy
+    function handleCancel() {
+        //navigator('/lophoc')
     }
 
     return (
@@ -35,8 +47,8 @@ const ThemDiemComponent = () => {
                         <form action="">
                             <div className="form-group mb-2">
                                 <label className="form-label">Mon hoc:</label>
-                                <select value={monhoc} onChange={handleChange}>
-                                    <option  onChange={(e) => setMonHoc(e.target.value)} value="">Select</option>
+                                <select value={monhoc} onChange={handleChangeMonHoc}>
+                                    <option onChange={(e) => setMonHoc(e.target.value)} disabled value="">Select</option>
                                     {diems.map(diem => (
                                         <option key={diem.id} value={diem.id}>
                                             {diem.monhoc.tenMH}
@@ -47,20 +59,21 @@ const ThemDiemComponent = () => {
 
                             <div className="form-group mb-2">
                                 <label className="form-label">Sinh vien:</label>
-                                <input
-                                    type="text"
-                                    placeholder='Enter sinh vien'
-                                    name='sinhVien'
-                                    value={sinhVien}
-                                    onChange={(e) => setSinhVien(e.target.value)}
-                                />
+                                <select value={sinhVien} onChange={handleChangeSinhVien}>
+                                    <option onChange={(e) => setSinhVien(e.target.value)} disabled value="">Select</option>
+                                    {diems.map(diem => (
+                                        <option key={diem.id} value={diem.id}>
+                                            {diem.sinhVien.ten}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
 
                             <div className="form-group mb-2">
                                 <label className="form-label">Diem:</label>
                                 <input
                                     type="diem"
-                                    placeholder='Enter diems'
+                                    placeholder='Enter diem'
                                     name='diem'
                                     value={diem.diem}
                                     onChange={(e) => setDiem(e.target.value)}
@@ -69,6 +82,8 @@ const ThemDiemComponent = () => {
 
                             <div className="btn btn-success" >Submit</div>
                             {/* onClick={saveOrUpdateEmployee} */}
+                            <span className='px-3' />
+                            <button onClick={()=>handleCancel} className="btn btn-danger" >Cancel</button>
                         </form>
                     </div>
                 </div>

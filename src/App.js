@@ -18,8 +18,8 @@ function App() {
             <HeaderComponent />
 
             <Routes>
+            
               <Route path='/lophoc' element={<LophocComponent />}></Route>
-
 
               <Route path='/' element={<DiemConponent />}></Route>
 
