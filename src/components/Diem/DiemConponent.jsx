@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const DiemConponent = () => {
 
     const [diems, setDiem] = useState([]);
+    
     const navigator = useNavigate();
 
     useEffect(() => {
@@ -18,7 +19,6 @@ const DiemConponent = () => {
             console.log(error);
         })
     }
-
     function addDiem() {
         navigator('/add-diem')
     }
@@ -33,9 +33,9 @@ const DiemConponent = () => {
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>diem</th>
                         <th>sinh vien</th>
                         <th>mon hoc</th>
+                        <th>diem</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -44,9 +44,9 @@ const DiemConponent = () => {
                         diems.map((diem) =>
                             <tr key={diem.id}>
                                 <td>{diem.id}</td>
-                                <td>{diem.diem}</td>
                                 <td>{diem.sinhVien.ten}</td>
                                 <td>{diem.monhoc.tenMH}</td>
+                                <td>{diem.diem}</td>
                                 <td>
                                     <button className='btn btn-success ms-2'>Update</button>
                                     {/* onClick={() => Update(employee.id)} */}
