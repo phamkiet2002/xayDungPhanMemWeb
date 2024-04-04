@@ -10,6 +10,7 @@ import ThemDiemComponent from './components/Diem/ThemDiemComponent';
 import MonhocComponent from './components/Monhoc/MonhocComponent';
 import FooterComponent from './components/Footer';
 import SinhvienComponent from './components/Sinhvien/SinhvienComponent';
+import BodyComponent from './components/BodyComponent';
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
             <HeaderComponent />
 
             <Routes>
-
+              <Route path='' element={<BodyComponent />}></Route>
+  
               <Route path='/lophoc' element={<LophocComponent />}></Route>
 
               <Route path='/monhoc' element={<MonhocComponent />}></Route>
