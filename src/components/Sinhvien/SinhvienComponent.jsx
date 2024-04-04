@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
-import { DeleteMon, fetchAllMonhoc } from "../../services/MonhocServiec";
 import { toast } from 'react-toastify';
-import ThemMonComponent from "./ThemMonComponent";
-import UpdateMonComponent from "./UpdateMonComponent";
-const MonhocComponent = (props) => {
+import { DeleteSv, fetchAllSinhVien, updateSv } from "../../services/SinhVienService";
+import ThemSinhvienComponent from "./ThemSinhvienComponent";
+import UpdateSinhvienComponent from "./UpdateSinhvienComponent";
+const SinhvienComponent = (props) => {
+
     const [showModal, setShowModal] = useState(false);
 
     const [dataUpdate, setDataUpdate] = useState({});
@@ -14,90 +15,91 @@ const MonhocComponent = (props) => {
         setShowModal(false);
         setModalUpdate(false);
     };
-    const [monhocs, setMonhoc] = useState([]);
+    const [sinhviens, setSinhvien] = useState([]);
     useEffect(() => {
-        listMonhoc();
+        listSv();
     }, [])
-
-    function listMonhoc() {
-        fetchAllMonhoc().then(response => {
-            setMonhoc(response.data);
+    function listSv() {
+        fetchAllSinhVien().then(response => {
+            setSinhvien(response.data);
         }).catch(
             error => {
                 console.log(error);
             }
         )
     }
-
-    function Delete(id) {
+    function Delete(idsinhvien) {
         if (window.confirm("Bạn có chắc muốn xóa không?")) {
-            DeleteMon(id)
+            DeleteSv(idsinhvien)
                 .then(rp => {
-                    listMonhoc();
+                    listSv();
                     toast.success("xóa thành công")
-                    //alert("Đã xóa thành công.");
                 })
                 .catch(error => {
                     if (error.response && error.response.status === 500) {
                         toast.error("Không thể xóa vì khóa không tồn tại hoặc có dữ liệu liên quan.")
-                        //alert("Không thể xóa vì khóa không tồn tại hoặc có dữ liệu liên quan.");
                     }
                 });
         }
     }
-    const UpdateMonhoc = (mon) => {
-        setDataUpdate(mon);
+    const UpdateSinhvien = (sv) => {
+        setDataUpdate(sv);
         setModalUpdate(true);
-        console.log(mon);
+        console.log(sv);
     }
 
     return (
         <>
             <div className="my-3 them_monhoc">
-                <span><b>Them Mon hoc:</b></span>
-                <button className="btn btn-success" onClick={() => setShowModal(true)} >Them</button>
+                <button className="btn btn-success" onClick={() => setShowModal(true)} >Thêm sinh viên</button>
             </div>
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>ten mon hoc</th>
-                        <th>So tin chi</th>
+                        <th>Tên</th>
+                        <th>Email</th>
+                        <th>SDT</th>
+                        <th>Địa chỉ</th>
+                        <th>Tên lớp </th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        monhocs.map((mon) =>
-                            <tr key={mon.idMH}>
-                                <td>{mon.tenMH}</td>
-                                <td>{mon.soTc}</td>
+                        sinhviens.map((sv) =>
+                            <tr key={sv.idsinhvien}>
+                                <td>{sv.ten}</td>
+                                <td>{sv.email}</td>
+                                <td>{sv.soDienThoai}</td>
+                                <td>{sv.diaChi}</td>
+                                <td>{sv.lophoc ? sv.lophoc.tenlop : ''}</td>
                                 <td>
-                                    <button onClick={() => Delete(mon.idMH)} className='btn btn-danger ms-2'>Delete</button>
-                                    <button onClick={() => UpdateMonhoc(mon)} className='btn btn-success ms-2'>Update</button>
+                                    <button onClick={() => Delete(sv.idsinhvien)} className='btn btn-danger ms-2'>Delete</button>
+                                    <button onClick={() => UpdateSinhvien(sv)} className='btn btn-success ms-2'>Update</button>
                                 </td>
                             </tr>
+
                         )
                     }
                 </tbody>
             </Table>
 
-            <ThemMonComponent
+            <ThemSinhvienComponent
                 show={showModal}
                 handleClose={handleClose}
-                listMonhoc={listMonhoc}
+                listSv={listSv}
             />
 
-            <UpdateMonComponent
+            <UpdateSinhvienComponent
                 show={ModalUpdate}
                 handleClose={handleClose}
-                listMonhoc={listMonhoc}
+                listSv={listSv}
                 dataUpdate={dataUpdate}
             />
 
         </>
     )
 
-
 }
 
-export default MonhocComponent
+export default SinhvienComponent

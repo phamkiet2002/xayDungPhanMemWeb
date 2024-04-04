@@ -1,4 +1,4 @@
-import './App.scss';
+import './App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import LophocComponent from './components/Lophoc/LophocComponent';
 import Container from 'react-bootstrap/Container';
@@ -7,6 +7,9 @@ import DiemConponent from './components/Diem/DiemConponent';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ThemLopComponent from './components/Lophoc/ThemLopComponent';
 import ThemDiemComponent from './components/Diem/ThemDiemComponent';
+import MonhocComponent from './components/Monhoc/MonhocComponent';
+import FooterComponent from './components/Footer';
+import SinhvienComponent from './components/Sinhvien/SinhvienComponent';
 
 function App() {
   return (
@@ -18,14 +21,18 @@ function App() {
             <HeaderComponent />
 
             <Routes>
-            
-              <Route path='/lophoc' element={<LophocComponent />}></Route>
 
-              <Route path='/' element={<DiemConponent />}></Route>
+              <Route path='/' element={<LophocComponent />}></Route>
 
-              <Route path='/add-diem' element={<ThemDiemComponent />}></Route>
+              <Route path='/monhoc' element={<MonhocComponent />}></Route>
+
+              <Route path='/diem' element={<DiemConponent />}></Route>
+
+              <Route path='/sinhvien' element={<SinhvienComponent />}></Route>
 
             </Routes>
+
+            <FooterComponent />
 
           </Container>
         </div>

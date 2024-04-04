@@ -64,7 +64,7 @@ const LophocComponent = (props) => {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>tenlop</th>
+                        <th>Tên Lớp</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -73,7 +73,6 @@ const LophocComponent = (props) => {
                         lophocs.map((lop) =>
                             <tr key={lop.malop}>
                                 <td>{lop.tenlop}</td>
-
                                 <td>
                                     <button onClick={() => Delete(lop.malop)} className='btn btn-danger ms-2'>Delete</button>
                                     <button onClick={() => UpdateLophoc(lop)} className='btn btn-success ms-2'>Update</button>
@@ -88,7 +87,6 @@ const LophocComponent = (props) => {
                 show={showModal}
                 handleClose={handleClose}
                 listLophoc={listLophoc}
-
             />
 
             <UpdateLopComponent

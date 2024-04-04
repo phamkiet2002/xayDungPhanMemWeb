@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
-import { fetchAllDiem } from '../../services/diemService';
 import { useNavigate } from 'react-router-dom';
+import { fetchAllDiem } from '../../services/diemService';
 const DiemConponent = () => {
 
     const [diems, setDiem] = useState([]);
-    
+
     const navigator = useNavigate();
 
     useEffect(() => {
@@ -44,12 +44,11 @@ const DiemConponent = () => {
                         diems.map((diem) =>
                             <tr key={diem.id}>
                                 <td>{diem.id}</td>
-                                <td>{diem.sinhVien.ten}</td>
+                                <td>{diem.sinhVien?.ten}</td>
                                 <td>{diem.monhoc.tenMH}</td>
                                 <td>{diem.diem}</td>
                                 <td>
                                     <button className='btn btn-success ms-2'>Update</button>
-                                    {/* onClick={() => Update(employee.id)} */}
                                 </td>
                             </tr>
                         )
