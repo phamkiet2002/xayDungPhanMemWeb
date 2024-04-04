@@ -22,7 +22,7 @@ function App() {
 
             <Routes>
 
-              <Route path='/' element={<LophocComponent />}></Route>
+              <Route path='/lophoc' element={<LophocComponent />}></Route>
 
               <Route path='/monhoc' element={<MonhocComponent />}></Route>
 
