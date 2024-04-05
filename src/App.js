@@ -7,6 +7,8 @@ import DiemConponent from './components/Diem/DiemConponent';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ThemLopComponent from './components/Lophoc/ThemLopComponent';
 import ThemDiemComponent from './components/Diem/ThemDiemComponent';
+import UserHeader from './components/UserHeader';
+import ViewDiem from './User/ViewDiem';
 
 function App() {
   return (
@@ -15,13 +17,13 @@ function App() {
         <div className='app_container'>
           <Container>
 
-            <HeaderComponent />
+            < UserHeader/>
 
             <Routes>
             
               <Route path='/lophoc' element={<LophocComponent />}></Route>
 
-              <Route path='/' element={<DiemConponent />}></Route>
+              <Route path='/' element={<ViewDiem />}></Route>
 
               <Route path='/add-diem' element={<ThemDiemComponent />}></Route>
 
