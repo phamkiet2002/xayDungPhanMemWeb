@@ -11,11 +11,13 @@ import MonhocComponent from './components/Monhoc/MonhocComponent';
 import FooterComponent from './components/Footer';
 import SinhvienComponent from './components/Sinhvien/SinhvienComponent';
 import BodyComponent from './components/BodyComponent';
+import Header from './components/User/HeaderUserView';
+import ViewDiem from './components/User/ViewDiem';
 
 function App() {
   return (
     <>
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <div className='app_container'>
           <Container>
 
@@ -35,6 +37,24 @@ function App() {
             </Routes>
 
             <FooterComponent />
+
+          </Container>
+        </div>
+      </BrowserRouter> */}
+       <BrowserRouter>
+        <div className='app_container'>
+          <Container>
+
+            <Header />
+            <Routes>
+            
+              <Route path='/lophoc' element={<LophocComponent />}></Route>
+
+              <Route path='/' element={<ViewDiem />}></Route>
+
+              <Route path='/add-diem' element={<ThemDiemComponent />}></Route>
+
+            </Routes>
 
           </Container>
         </div>
